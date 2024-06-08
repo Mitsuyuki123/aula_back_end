@@ -15,21 +15,11 @@ def atualizar_contato(contatos):
                     dado_para_att = input("Digite o dado a ser atualizado (nome/telefone/email): ")
                     if dado_para_att == "sair":
                         return
-                    if dado_para_att == "nome":
-                        novo_nome = input("Digite o novo nome do contato: ")
-                        contatos[index]['nome'] = novo_nome
-                        print(f"Nome atualizado com sucesso! O novo nome é '{contatos[index]['nome']}'")
-                        return
-                    elif dado_para_att == "telefone":
-                        novo_tel = input("Digite o novo número do contato: ")
-                        contatos[index]['telefone'] = novo_tel
-                        print(f"Telefone atualizado com sucesso! O novo número é '{contatos[index]['telefone']}'")
-                        return
-                    elif dado_para_att == "email":
-                        novo_mail = input("Digite o novo email do contato: ")
-                        contatos[index]['email'] = novo_mail
-                        print(f"E-mail atualizado com sucesso! O novo email é '{contatos[index]['email']}'")
-                        return
+                    elif dado_para_att not in ["nome", "telefone", "email"]:
+                        print("Dado inválido. Digite 'nome', 'telefone' ou 'email'.")
                     else:
-                        print("Dado inválido.")
+                        new_data = input(f"Digite o novo {dado_para_att} do contato: ")
+                        contatos[index][f'{dado_para_att}'] = new_data
+                        print(f"O {dado_para_att} foi atualizado com sucesso.")
+                        return
         print(f"Contato '{contato_att}' não encontrado")
