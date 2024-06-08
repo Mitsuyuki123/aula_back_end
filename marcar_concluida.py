@@ -1,12 +1,14 @@
 def concluida(tarefas):
-    print("\nTarefas:")
-    for idx, tarefa in enumerate(tarefas):
-        print(f"Titulo: {tarefa['titulo']}")
-    tarefa_concluida = input("Informe a tarefa concluida: ")
-    tarefa_encontrada = [obj for obj in tarefas if obj['titulo'] == tarefa_concluida]
-    if tarefa_encontrada:
-        for obj in tarefa_encontrada:
-            obj['status'] = "concluida"
-            print(f'A tarefa {obj["titulo"]} foi marcada como {obj['status']}')
-    else:
-        print(f"tarefa {tarefa_concluida} nao encontrada")
+    if not tarefas:
+        print("Não há tarefas cadastradas")
+        return
+
+    try:  # código que pode gerar exceção
+        tarefa_idx = int(input("Informe o número da tarefa a ser excluida: "))-1
+        if 0 <= tarefa_idx < len(tarefas):
+            tarefas[tarefa_idx]['concluida'] = True
+            print(f"A tarefa '{tarefas[tarefa_idx]["titulo"]}' foi marcada como 'concluida'")
+        else:
+            print(f"tarefa '{tarefa_idx+1}' nao encontrada")
+    except ValueError:  # tratamento da exceção
+        print("Entrada inválida. Tente novamente")
